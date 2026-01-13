@@ -89,7 +89,7 @@ export default function SettingsScreen() {
 
                     <View style={[styles.settingRow, styles.groupedSettingBottom]}>
                         <View style={styles.settingInfo}>
-                            <Text style={[styles.settingLabel, { marginBottom: 0 }]}>Message language</Text>
+                            <Text style={[styles.settingLabel, { marginBottom: 0 }]}>Blessing Language</Text>
                         </View>
                         <Pressable
                             style={styles.dropdownTrigger}
