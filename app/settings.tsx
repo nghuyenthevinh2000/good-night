@@ -1,18 +1,35 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Pressable, Modal, FlatList, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Colors, Typography } from '@/constants/theme';
 import { CHARACTERS, CharacterKey } from '@/constants/characters';
+import { LANGUAGES } from '@/constants/languages';
 import { useAppStore } from '@/store/useAppStore';
 import { Ionicons } from '@expo/vector-icons';
+import { useNotifications } from '@/hooks/useNotifications';
+import { useEffect, useState } from 'react';
 
 export default function SettingsScreen() {
     const router = useRouter();
     const {
         selectedCharacterId,
         setSelectedCharacter,
+        selectedLanguage,
+        setSelectedLanguage,
         reminderEnabled,
         toggleReminder
     } = useAppStore();
+    const { scheduleDailyReminder, cancelNotifications } = useNotifications();
+    const [isLanguagePickerVisible, setLanguagePickerVisible] = useState(false);
+
+    const currentLanguage = LANGUAGES.find(l => l.id === selectedLanguage) || LANGUAGES[0];
+
+    useEffect(() => {
+        if (reminderEnabled) {
+            scheduleDailyReminder('23:00');
+        } else {
+            cancelNotifications();
+        }
+    }, [reminderEnabled]);
 
     return (
         <View style={styles.container}>
@@ -55,7 +72,7 @@ export default function SettingsScreen() {
                 >
                     <View style={styles.settingInfo}>
                         <Text style={styles.settingLabel}>Daily Good Night</Text>
-                        <Text style={styles.settingSubLabel}>Receive a notification at 10:00 PM</Text>
+                        <Text style={styles.settingSubLabel}>Oriental Medicine best sleep time (11:00 PM)</Text>
                     </View>
                     <View style={[
                         styles.toggle,
@@ -67,6 +84,65 @@ export default function SettingsScreen() {
                         ]} />
                     </View>
                 </Pressable>
+
+                <View style={styles.settingRow}>
+                    <View style={styles.settingInfo}>
+                        <Text style={[styles.settingLabel, { marginBottom: 0 }]}>Language</Text>
+                    </View>
+                    <Pressable
+                        style={styles.dropdownTrigger}
+                        onPress={() => setLanguagePickerVisible(true)}
+                    >
+                        <Text style={styles.dropdownValue}>{currentLanguage.nativeName}</Text>
+                        <Ionicons name="chevron-down" size={18} color={Colors.textMuted} />
+                    </Pressable>
+                </View>
+
+                <Modal
+                    visible={isLanguagePickerVisible}
+                    transparent
+                    animationType="fade"
+                    onRequestClose={() => setLanguagePickerVisible(false)}
+                >
+                    <Pressable
+                        style={styles.modalOverlay}
+                        onPress={() => setLanguagePickerVisible(false)}
+                    >
+                        <View style={styles.modalContent}>
+                            <View style={styles.modalHeader}>
+                                <Text style={styles.modalTitle}>Select Language</Text>
+                                <Pressable onPress={() => setLanguagePickerVisible(false)}>
+                                    <Ionicons name="close" size={24} color={Colors.text} />
+                                </Pressable>
+                            </View>
+                            <FlatList
+                                data={LANGUAGES}
+                                keyExtractor={(item) => item.id}
+                                renderItem={({ item }) => (
+                                    <Pressable
+                                        style={[
+                                            styles.languageOption,
+                                            selectedLanguage === item.id && styles.languageOptionSelected
+                                        ]}
+                                        onPress={() => {
+                                            setSelectedLanguage(item.id);
+                                            setLanguagePickerVisible(false);
+                                        }}
+                                    >
+                                        <View style={styles.languageInfo}>
+                                            <Text style={styles.languageNamePrimary}>{item.nativeName}</Text>
+                                            <Text style={styles.languageNameSecondary}>{item.name}</Text>
+                                        </View>
+                                        {selectedLanguage === item.id && (
+                                            <Ionicons name="checkmark-circle" size={22} color={Colors.primary} />
+                                        )}
+                                    </Pressable>
+                                )}
+                                contentContainerStyle={styles.languageList}
+                            />
+                        </View>
+                    </Pressable>
+                </Modal>
 
                 <View style={styles.footerSpacing} />
             </ScrollView>
@@ -197,5 +273,71 @@ const styles = StyleSheet.create({
     },
     footerSpacing: {
         height: 100,
+    },
+    dropdownTrigger: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 12,
+    },
+    dropdownValue: {
+        color: Colors.text,
+        fontSize: 15,
+        fontFamily: Typography.body,
+        marginRight: 6,
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        justifyContent: 'flex-end',
+    },
+    modalContent: {
+        backgroundColor: Colors.surface,
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32,
+        maxHeight: '70%',
+        paddingBottom: 40,
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 24,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(255, 255, 255, 0.05)',
+    },
+    modalTitle: {
+        color: Colors.text,
+        fontSize: 18,
+        fontFamily: Typography.bodyBold,
+    },
+    languageList: {
+        padding: 16,
+    },
+    languageOption: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+        borderRadius: 16,
+        marginBottom: 8,
+    },
+    languageOptionSelected: {
+        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+    },
+    languageInfo: {
+        flex: 1,
+    },
+    languageNamePrimary: {
+        color: Colors.text,
+        fontSize: 16,
+        fontFamily: Typography.bodyBold,
+        marginBottom: 2,
+    },
+    languageNameSecondary: {
+        color: Colors.textMuted,
+        fontSize: 13,
+        fontFamily: Typography.body,
     }
 });

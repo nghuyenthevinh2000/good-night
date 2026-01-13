@@ -5,6 +5,7 @@ import { generateGoodNightMessage } from '@/services/ai';
 export const useGoodNightMessage = () => {
     const {
         selectedCharacterId,
+        selectedLanguage,
         setCurrentMessage,
         setLoading
     } = useAppStore();
@@ -12,7 +13,7 @@ export const useGoodNightMessage = () => {
     const fetchNewMessage = async () => {
         setLoading(true);
         try {
-            const message = await generateGoodNightMessage(selectedCharacterId);
+            const message = await generateGoodNightMessage(selectedCharacterId, selectedLanguage);
             setCurrentMessage(message);
         } catch (error) {
             Alert.alert("Error", "Could not get a new good night message. Please try again.");

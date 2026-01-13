@@ -38,7 +38,7 @@ export const useNotifications = () => {
         setIsPermitted(finalStatus === 'granted');
     };
 
-    const scheduleDailyReminder = async (time: string) => {
+    const scheduleDailyReminder = async (time: string = '23:00') => {
         if (!isPermitted) return;
 
         const [hours, minutes] = time.split(':').map(Number);
@@ -47,8 +47,8 @@ export const useNotifications = () => {
 
         await Notifications.scheduleNotificationAsync({
             content: {
-                title: "Time for a good night ✨",
-                body: "Swipe right to get your nightly blessing.",
+                title: "Best Sleep Time ✨",
+                body: "Oriental Medicine best sleep time. Swipe to get your blessing.",
                 data: { url: '/' },
             },
             trigger: {
@@ -59,8 +59,13 @@ export const useNotifications = () => {
         });
     };
 
+    const cancelNotifications = async () => {
+        await Notifications.cancelAllScheduledNotificationsAsync();
+    };
+
     return {
         isPermitted,
-        scheduleDailyReminder
+        scheduleDailyReminder,
+        cancelNotifications
     };
 };

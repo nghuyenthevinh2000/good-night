@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { CHARACTERS, CharacterKey } from '@/constants/characters';
+import { LANGUAGES, LanguageKey } from '@/constants/languages';
 
 // Note: In a production app, this should be handled by a backend (Cloud Function)
 // to keep the API key secure. For this implementation, we'll use a placeholder
@@ -8,12 +9,13 @@ const GEMINI_API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY || "";
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-export const generateGoodNightMessage = async (characterId: CharacterKey): Promise<string> => {
+export const generateGoodNightMessage = async (characterId: CharacterKey, languageId: LanguageKey = 'en'): Promise<string> => {
     try {
         const character = CHARACTERS.find(c => c.id === characterId) || CHARACTERS[0];
+        const language = LANGUAGES.find(l => l.id === languageId) || LANGUAGES[0];
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-        const prompt = `${character.prompt}. Keep the message concise (max 2-3 sentences). Do not use quotation marks.`;
+        const prompt = `${character.prompt}. Keep the message concise (max 2-3 sentences). Do not use quotation marks. Generate the message in ${language.name}.`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
