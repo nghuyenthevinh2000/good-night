@@ -65,37 +65,40 @@ export default function SettingsScreen() {
                     </Pressable>
                 ))}
 
-                <Text style={styles.sectionTitle}>Reminders</Text>
-                <Pressable
-                    style={styles.settingRow}
-                    onPress={toggleReminder}
-                >
-                    <View style={styles.settingInfo}>
-                        <Text style={styles.settingLabel}>Daily Good Night</Text>
-                        <Text style={styles.settingSubLabel}>Oriental Medicine best sleep time (11:00 PM)</Text>
-                    </View>
-                    <View style={[
-                        styles.toggle,
-                        reminderEnabled && styles.toggleActive
-                    ]}>
-                        <View style={[
-                            styles.toggleThumb,
-                            reminderEnabled && styles.toggleThumbActive
-                        ]} />
-                    </View>
-                </Pressable>
+                <Text style={styles.sectionTitle}>App Preferences</Text>
 
-                <View style={styles.settingRow}>
-                    <View style={styles.settingInfo}>
-                        <Text style={[styles.settingLabel, { marginBottom: 0 }]}>Message language</Text>
-                    </View>
+                <View style={styles.settingsGroup}>
                     <Pressable
-                        style={styles.dropdownTrigger}
-                        onPress={() => setLanguagePickerVisible(true)}
+                        style={[styles.settingRow, styles.groupedSettingTop]}
+                        onPress={toggleReminder}
                     >
-                        <Text style={styles.dropdownValue}>{currentLanguage.nativeName}</Text>
-                        <Ionicons name="chevron-down" size={18} color={Colors.textMuted} />
+                        <View style={styles.settingInfo}>
+                            <Text style={styles.settingLabel}>Daily Reminder</Text>
+                            <Text style={styles.settingSubLabel}>Oriental Medicine best sleep time (11:00 PM)</Text>
+                        </View>
+                        <View style={[
+                            styles.toggle,
+                            reminderEnabled && styles.toggleActive
+                        ]}>
+                            <View style={[
+                                styles.toggleThumb,
+                                reminderEnabled && styles.toggleThumbActive
+                            ]} />
+                        </View>
                     </Pressable>
+
+                    <View style={[styles.settingRow, styles.groupedSettingBottom]}>
+                        <View style={styles.settingInfo}>
+                            <Text style={[styles.settingLabel, { marginBottom: 0 }]}>Message language</Text>
+                        </View>
+                        <Pressable
+                            style={styles.dropdownTrigger}
+                            onPress={() => setLanguagePickerVisible(true)}
+                        >
+                            <Text style={styles.dropdownValue}>{currentLanguage.nativeName}</Text>
+                            <Ionicons name="chevron-down" size={18} color={Colors.textMuted} />
+                        </Pressable>
+                    </View>
                 </View>
 
                 <Modal
@@ -237,6 +240,24 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 20,
         marginBottom: 16,
+    },
+    settingsGroup: {
+        borderRadius: 20,
+        overflow: 'hidden',
+        marginBottom: 20,
+        backgroundColor: Colors.surface,
+    },
+    groupedSettingTop: {
+        marginBottom: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(255, 255, 255, 0.05)',
+    },
+    groupedSettingBottom: {
+        marginBottom: 0,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
     },
     settingInfo: {
         flex: 1,
