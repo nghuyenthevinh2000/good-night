@@ -6,7 +6,6 @@ A premium mobile experience designed to combat the modern **sleeping pandemic**.
 
 In an era of digital noise and chronic insomnia, **Good Night** acts as your nightly emotional anchor. We believe that a restful night begins with a peaceful mind. By combining cutting-edge AI with a soulful, tactile interface, we provide the "warm milk for the digital age"—helping you disconnect from the day's chaos and reconnect with your inner peace.
 
-
 ### 🤖 AI-Powered Personalities
 Choose from 5 distinct agent characters to receive a blessing that matches your current state of mind:
 - **💕 Romantic Partner**: Sweet, affectionate messages that make you feel loved.

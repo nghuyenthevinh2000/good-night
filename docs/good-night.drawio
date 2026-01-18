@@ -1,25 +1,25 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="app-design" id="X7RVxfJduREfWuBoF2QH">
-    <mxGraphModel dx="1018" dy="781" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="848" dy="651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-1" value="Text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-1" value="Text" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="120" width="160" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-4" value="Settings" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="320" y="280" width="40" height="40" as="geometry" />
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-4" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="320" y="370" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="440" y="120" width="160" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-7" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Settings&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-7" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Settings&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="440" y="80" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-8" value="Characters" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-8" value="Characters" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="460" y="140" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="S6KTdmRfX6vlCcoNhxE8-9" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Main app&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="S6KTdmRfX6vlCcoNhxE8-9" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Main app&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="200" y="80" width="160" height="40" as="geometry" />
         </mxCell>
       </root>
